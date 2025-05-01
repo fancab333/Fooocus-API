@@ -49,12 +49,18 @@ async def get_output(date: str, file_name: str, accept: str = Header(None)):
     Get a specific output by its ID.
     """
     accept_formats = ('png', 'jpg', 'jpeg', 'webp')
-    try:
-        _, ext = accept.lower().split("/")
+
+    if accept is not None:
+        try:
+            _, ext = accept.lower().split("/")
+            if ext not in accept_formats:
+                ext = None
+        except ValueError:
+            ext = None
+    else:
+        ext = file_name.split('.')[-1]
         if ext not in accept_formats:
             ext = None
-    except ValueError:
-        ext = None
 
     if not file_name.endswith(accept_formats):
         return Response(status_code=404)
