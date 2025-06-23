@@ -8,6 +8,12 @@ fooocus_proc = subprocess.Popen(
     ["python3", "main.py", "--port", "8888", "--host", "0.0.0.0"]
 )
 
+time.sleep(60)
+
+print("Installing Node.js and LocalTunnel...")
+subprocess.run(["apt", "install", "nodejs", "npm", "-y"], check=True)
+subprocess.run(["npm", "install", "-g", "localtunnel"], check=True)
+
 print("Launching LocalTunnel (random subdomain)...")
 lt_process = subprocess.Popen(
     ["lt", "--port", "8888"],
