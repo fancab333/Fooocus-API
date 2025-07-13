@@ -91,11 +91,11 @@ def prepare_environments(args) -> bool:
     sys.argv = [sys.argv[0]]
 
     # Remove and copy preset folder
-    #origin_preset_folder = os.path.abspath(os.path.join(module_path, "presets"))
-    #preset_folder = os.path.abspath(os.path.join(script_path, "presets"))
-    #if os.path.exists(preset_folder):
-    #    shutil.rmtree(preset_folder)
-    #shutil.copytree(origin_preset_folder, preset_folder)
+    origin_preset_folder = os.path.abspath(os.path.join(module_path, "presets"))
+    preset_folder = os.path.abspath(os.path.join(script_path, "presets"))
+    if os.path.exists(preset_folder):
+        shutil.rmtree(preset_folder)
+    shutil.copytree(origin_preset_folder, preset_folder)
 
     from modules import config
     from fooocusapi.configs import default
